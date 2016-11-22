@@ -1,5 +1,8 @@
-﻿using FluentAutomation;
+﻿using BudgetWebApp.Tests.DataModels;
+using FluentAutomation;
 using TechTalk.SpecFlow;
+using System.Linq;
+using NUnit.Framework;
 
 namespace BudgetWebApp.Tests.cucumber.steps
 {
@@ -33,7 +36,11 @@ namespace BudgetWebApp.Tests.cucumber.steps
         [Then(@"there should be a existed record with budget (.*) for ""(.*)""")]
         public void ThenThereShouldBeAExistedRecordWithBudgetFor(int amount, string month)
         {
-            ScenarioContext.Current.Pending();
+            using (var dbcontext = new NorthwindEntities())
+            {
+                var budgets = dbcontext.Budgets.ToList();
+                Assert.AreEqual(1, budgets.Count);
+            }
         }
     }
 }
