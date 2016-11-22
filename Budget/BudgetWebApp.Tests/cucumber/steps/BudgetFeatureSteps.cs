@@ -1,19 +1,37 @@
-﻿using System;
+﻿using FluentAutomation;
 using TechTalk.SpecFlow;
 
 namespace BudgetWebApp.Tests.cucumber.steps
 {
     [Binding]
-    public class BudgetFeatureSteps
+    public class BudgetFeatureSteps : FluentTest
     {
-        [When(@"I add a buget (.*) for ""(.*)""")]
-        public void WhenIAddABugetFor(int p0, string p1)
+        public BudgetFeatureSteps()
         {
-            ScenarioContext.Current.Pending();
+            //System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+            //ChromeOptions options = new ChromeOptions();
+            //options.addArguments("--disable-extensions");
+            //driver = new ChromeDriver(options);
+            
+            SeleniumWebDriver.Bootstrap(
+               SeleniumWebDriver.Browser.Firefox
+           );
         }
-        
+
+        //todo, add a middle layer of driver
+        [When(@"I add a buget (.*) for ""(.*)""")]
+        public void WhenIAddABugetFor(int amount, string month)
+        {
+            var baseUrl = @"http://localhost:40298";
+
+            I.Open($"{baseUrl}/budgets/add")
+            .Enter(amount).In("#amount")
+            .Enter(month).In("#month")
+            .Press("{Enter}");
+        }
+
         [Then(@"there should be a existed record with budget (.*) for ""(.*)""")]
-        public void ThenThereShouldBeAExistedRecordWithBudgetFor(int p0, string p1)
+        public void ThenThereShouldBeAExistedRecordWithBudgetFor(int amount, string month)
         {
             ScenarioContext.Current.Pending();
         }
