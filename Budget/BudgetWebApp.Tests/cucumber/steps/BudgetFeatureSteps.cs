@@ -6,6 +6,9 @@ using NUnit.Framework;
 
 namespace BudgetWebApp.Tests.cucumber.steps
 {
+    //todo: 1. login tag for hook
+    //todo: 2. host web application before running testing
+    //todo: 3. 
     [Binding]
     public class BudgetFeatureSteps : FluentTest
     {
@@ -38,8 +41,8 @@ namespace BudgetWebApp.Tests.cucumber.steps
         {
             using (var dbcontext = new NorthwindEntities())
             {
-                var budgets = dbcontext.Budgets.ToList();
-                Assert.AreEqual(1, budgets.Count);
+                var count = dbcontext.Budgets.Count();
+                Assert.AreEqual(1, count);
             }
         }
     }
