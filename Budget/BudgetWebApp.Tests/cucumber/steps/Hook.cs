@@ -1,46 +1,58 @@
 ﻿using BudgetWebApp.Tests.DataModels;
 using FluentAutomation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace BudgetWebApp.Tests.cucumber.steps
 {
+    //[TestClass]
+    //public sealed class MsTestEventHook
+    //{
+    //    [AssemblyInitialize]
+    //    public static void AssemblyInit(TestContext context)
+    //    {
+    //        //ContextInfo.dbcontext = new NorthwindEntities();
+    //        SeleniumWebDriver.Bootstrap(
+    //           SeleniumWebDriver.Browser.Firefox
+    //       );
+    //    }
+
+    //    //[AssemblyCleanup]
+    //    //public static void AssemblyCleanup()
+    //    //{
+    //    //    ContextInfo.dbcontext.Dispose();
+    //    //}
+    //}
+
     [Binding]
     public sealed class Hook
     {
-        public static NorthwindEntities dbcontext;
-
-        [BeforeFeature]
-        public static void BeforeFeature()
+        [BeforeScenario]
+        public void BeforeScenario()
         {
-            dbcontext = new NorthwindEntities();
-
+            //ContextInfo.dbcontext = new NorthwindEntities();
             SeleniumWebDriver.Bootstrap(
                SeleniumWebDriver.Browser.Firefox
            );
         }
 
-        [AfterFeature(Order = int.MaxValue)]
-        public static void AfterFeature()
+        [AfterScenario]
+        public void AfterScenario()
         {
-            dbcontext.Dispose();
+            //ContextInfo.dbcontext.Dispose();
         }
 
         [BeforeScenario("RemoveBudgets")]
         public void RemoveBudgets()
         {
-            dbcontext.Budgets.RemoveRange(dbcontext.Budgets);
-            dbcontext.SaveChanges();
+            ContextInfo.dbcontext.Budgets.RemoveRange(ContextInfo.dbcontext.Budgets);
+            ContextInfo.dbcontext.SaveChanges();
         }
 
-        [AfterFeature("RemoveBudgets")]
-        public static void RemoveBudgetsAfterFeature()
-        {
-            dbcontext.Budgets.RemoveRange(dbcontext.Budgets);
-            dbcontext.SaveChanges();
-        }
+        //[AfterFeature("RemoveBudgets")]
+        //public static void RemoveBudgetsAfterFeature()
+        //{
+        //    ContextInfo.dbcontext.Budgets.RemoveRange(ContextInfo.dbcontext.Budgets);
+        //    ContextInfo.dbcontext.SaveChanges();
+        //}
     }
 }

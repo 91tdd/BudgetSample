@@ -1,8 +1,7 @@
 ﻿using BudgetWebApp.Tests.cucumber.steps.PageObjects;
-using BudgetWebApp.Tests.DataModels;
+using ExpectedObjects;
 using FluentAutomation;
-using NUnit.Framework;
-using System.Linq;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace BudgetWebApp.Tests.cucumber.steps
@@ -29,11 +28,14 @@ namespace BudgetWebApp.Tests.cucumber.steps
         [Then(@"there should be a existed record with budget (.*) for ""(.*)""")]
         public void ThenThereShouldBeAExistedRecordWithBudgetFor(int amount, string month)
         {
-            using (var dbcontext = new NorthwindEntities())
-            {
-                var count = dbcontext.Budgets.Count();
-                Assert.AreEqual(1, count);
-            }
+            //System.Threading.Thread.Sleep(500);
+            var dbcontext = ContextInfo.dbcontext;
+            var budget = dbcontext.Budgets
+            .Find(month);
+
+            var expected = new BudgetWebApp.Tests.DataModels.Budgets { Amount = amount, YearMonth = month };
+            expected.ToExpectedObject().ShouldEqual(budget);
+            //}
         }
     }
 }
