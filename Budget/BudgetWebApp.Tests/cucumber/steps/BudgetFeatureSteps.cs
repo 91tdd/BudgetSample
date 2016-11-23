@@ -1,4 +1,5 @@
-﻿using BudgetWebApp.Tests.DataModels;
+﻿using BudgetWebApp.Tests.cucumber.steps.PageObjects;
+using BudgetWebApp.Tests.DataModels;
 using FluentAutomation;
 using NUnit.Framework;
 using System.Linq;
@@ -9,13 +10,20 @@ namespace BudgetWebApp.Tests.cucumber.steps
     [Binding]
     public class BudgetFeatureSteps : FluentTest
     {
+        private BudgetPage _budgetPage;
+
+        public BudgetFeatureSteps()
+        {
+            this._budgetPage = new BudgetPage(this);
+        }
+
         [When(@"I add a buget (.*) for ""(.*)""")]
         public void WhenIAddABugetFor(int amount, string month)
         {
-            I.Open($"{ContextInfo.baseUrl}/budgets/add")
-            .Enter(amount).In("#Amount")
-            .Enter(month).In("#Month")
-            .Press("{Enter}");
+            this._budgetPage.Go()
+                .Amount(amount)
+                .Month(month)
+                .AddBudget();
         }
 
         [Then(@"there should be a existed record with budget (.*) for ""(.*)""")]

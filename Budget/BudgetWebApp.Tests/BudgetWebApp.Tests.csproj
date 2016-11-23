@@ -130,6 +130,7 @@
     <Compile Include="cucumber\steps\BudgetFeatureSteps.cs" />
     <Compile Include="cucumber\steps\ContextInfo.cs" />
     <Compile Include="cucumber\steps\Hook.cs" />
+    <Compile Include="cucumber\steps\PageObjects\BudgetPage.cs" />
     <Compile Include="DataModels\Budgets.cs">
       <DependentUpon>NorthWind.tt</DependentUpon>
     </Compile>
