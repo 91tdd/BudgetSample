@@ -1,4 +1,5 @@
 ﻿using BudgetWebApp.Tests.DataModels;
+using FluentAutomation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,10 @@ namespace BudgetWebApp.Tests.cucumber.steps
         public static void BeforeFeature()
         {
             dbcontext = new NorthwindEntities();
+
+            SeleniumWebDriver.Bootstrap(
+               SeleniumWebDriver.Browser.Firefox
+           );
         }
 
         [AfterFeature(Order = int.MaxValue)]
