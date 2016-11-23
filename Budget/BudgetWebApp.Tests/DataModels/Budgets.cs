@@ -14,7 +14,6 @@ namespace BudgetWebApp.Tests.DataModels
     
     public partial class Budgets
     {
-        public int Id { get; set; }
         public decimal Amount { get; set; }
         public string YearMonth { get; set; }
     }

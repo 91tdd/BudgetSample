@@ -1,20 +1,18 @@
 ﻿using BudgetWebApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using BudgetWebApp.Models.Services;
+using System.Web.Mvc;
 
 namespace BudgetWebApp.Controllers
 {
     public class BudgetsController : Controller
     {
         private IBudgetService service;
+
         public BudgetsController()
         {
-
+            this.service = new BudgetService();
         }
+
         public BudgetsController(IBudgetService service)
         {
             this.service = service;
@@ -33,8 +31,9 @@ namespace BudgetWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add( BudgetModels model)
+        public ActionResult Add(BudgetModels model)
         {
+            //todo, model沒有內容
             this.service.Save(model);
             return View(model);
         }

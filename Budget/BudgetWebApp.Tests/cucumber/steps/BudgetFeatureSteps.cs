@@ -12,6 +12,19 @@ namespace BudgetWebApp.Tests.cucumber.steps
     [Binding]
     public class BudgetFeatureSteps : FluentTest
     {
+
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            using (var dbcontext = new NorthwindEntities())
+            {
+                var budgets = dbcontext.Budgets;
+                dbcontext.Budgets.RemoveRange(budgets);
+
+                dbcontext.SaveChanges();
+            }
+        }
+
         public BudgetFeatureSteps()
         {
             //System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
@@ -31,8 +44,8 @@ namespace BudgetWebApp.Tests.cucumber.steps
             var baseUrl = @"http://localhost:40298";
 
             I.Open($"{baseUrl}/budgets/add")
-            .Enter(amount).In("#amount")
-            .Enter(month).In("#month")
+            .Enter(amount).In("#Amount")
+            .Enter(month).In("#Month")
             .Press("{Enter}");
         }
 
