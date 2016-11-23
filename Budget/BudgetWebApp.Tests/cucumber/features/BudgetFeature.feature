@@ -1,5 +1,5 @@
-﻿Feature: BudgetFeature
-	
+﻿@RemoveBudgets
+Feature: BudgetFeature
 
 
 Scenario: Add a budget for unique month	

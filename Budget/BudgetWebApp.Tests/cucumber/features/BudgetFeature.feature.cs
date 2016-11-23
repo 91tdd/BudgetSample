@@ -19,6 +19,7 @@ namespace BudgetWebApp.Tests.Cucumber.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BudgetFeature")]
+    [NUnit.Framework.CategoryAttribute("RemoveBudgets")]
     public partial class BudgetFeatureFeature
     {
         
@@ -31,7 +32,8 @@ namespace BudgetWebApp.Tests.Cucumber.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BudgetFeature", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BudgetFeature", null, ProgrammingLanguage.CSharp, new string[] {
+                        "RemoveBudgets"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

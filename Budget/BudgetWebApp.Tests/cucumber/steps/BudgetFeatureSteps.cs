@@ -1,37 +1,31 @@
 ﻿using BudgetWebApp.Tests.DataModels;
 using FluentAutomation;
-using TechTalk.SpecFlow;
-using System.Linq;
 using NUnit.Framework;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace BudgetWebApp.Tests.cucumber.steps
 {
     //todo: 1. login tag for hook
     //todo: 2. host web application before running testing
-    //todo: 3. 
+    //todo: 3.
     [Binding]
     public class BudgetFeatureSteps : FluentTest
     {
+        //[BeforeScenario]
+        //public void BeforeScenario()
+        //{
+        //    using (var dbcontext = new NorthwindEntities())
+        //    {
+        //        var budgets = dbcontext.Budgets;
+        //        dbcontext.Budgets.RemoveRange(budgets);
 
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-            using (var dbcontext = new NorthwindEntities())
-            {
-                var budgets = dbcontext.Budgets;
-                dbcontext.Budgets.RemoveRange(budgets);
-
-                dbcontext.SaveChanges();
-            }
-        }
+        //        dbcontext.SaveChanges();
+        //    }
+        //}
 
         public BudgetFeatureSteps()
         {
-            //System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-            //ChromeOptions options = new ChromeOptions();
-            //options.addArguments("--disable-extensions");
-            //driver = new ChromeDriver(options);
-            
             SeleniumWebDriver.Bootstrap(
                SeleniumWebDriver.Browser.Firefox
            );
